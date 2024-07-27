@@ -18,6 +18,6 @@ public class Client {
         Game ticTacToe = controller.startGame(3,players);
 
         controller.displayBoard(ticTacToe);
-        System.out.println(controller.getGameState(ticTacToe));
+        //System.out.println(controller.getGameState(ticTacToe));
     }
 }
