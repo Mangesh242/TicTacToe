@@ -1,6 +1,6 @@
 package org.example.models;
 
-import org.example.strategies.WinningStrategy;
+import org.example.strategies.winningStrategies.WinningStrategy;
 
 import java.util.ArrayList;
 import java.util.List;

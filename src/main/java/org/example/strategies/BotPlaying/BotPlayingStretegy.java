@@ -1,4 +1,4 @@
-package org.example.strategies;
+package org.example.strategies.BotPlaying;
 
 import org.example.models.Board;
 import org.example.models.Move;

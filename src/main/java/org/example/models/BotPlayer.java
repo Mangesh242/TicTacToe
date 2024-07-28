@@ -1,7 +1,7 @@
 package org.example.models;
 
-import org.example.strategies.BotPlayingStrategyFactory;
-import org.example.strategies.BotPlayingStretegy;
+import org.example.strategies.BotPlaying.BotPlayingStrategyFactory;
+import org.example.strategies.BotPlaying.BotPlayingStretegy;
 
 import java.util.Scanner;
 

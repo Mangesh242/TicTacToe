@@ -1,4 +1,4 @@
-package org.example.strategies;
+package org.example.strategies.BotPlaying;
 
 import org.example.models.Board;
 import org.example.models.Cell;
@@ -7,7 +7,7 @@ import org.example.models.Move;
 
 import java.util.List;
 
-public class BotEasyPlayingStrategy implements BotPlayingStretegy{
+public class BotEasyPlayingStrategy implements BotPlayingStretegy {
     @Override
     public Move makeMove(Board board) {
         for(List<Cell> row:board.getGrid()){

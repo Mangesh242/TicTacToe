@@ -2,11 +2,10 @@ package org.example;
 
 import org.example.controller.GameController;
 import org.example.models.*;
-import org.example.strategies.ColumnWinningStrategy;
-import org.example.strategies.RowWinningStrategy;
-import org.example.strategies.WinningStrategy;
+import org.example.strategies.winningStrategies.ColumnWinningStrategy;
+import org.example.strategies.winningStrategies.RowWinningStrategy;
+import org.example.strategies.winningStrategies.WinningStrategy;
 
-import javax.swing.plaf.IconUIResource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -42,14 +41,11 @@ public class Client {
         }
     }
         }
-
         if(ticTacToe.getGameState().equals(GameState.SUCCESS)){
             System.out.println("Winner: "+ticTacToe.getWinnerName().getName());
         }
         else if(ticTacToe.getGameState().equals(GameState.DRAW)){
             System.out.println("Draw");
         }
-
-
     }
 }
