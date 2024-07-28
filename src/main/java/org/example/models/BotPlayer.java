@@ -3,10 +3,12 @@ package org.example.models;
 import org.example.strategies.BotPlayingStrategyFactory;
 import org.example.strategies.BotPlayingStretegy;
 
+import java.util.Scanner;
+
 public class BotPlayer extends Player{
     private BotDifficultyLevel difficultyLevel;
     private BotPlayingStretegy playingStretegy;
-
+    Scanner sc=new Scanner(System.in);
     public BotPlayer(int id, String name,PlayerType playerType, Symbol symbol, BotDifficultyLevel difficultyLevel) {
         super(id, name,playerType,symbol);
         this.difficultyLevel = difficultyLevel;
@@ -27,5 +29,15 @@ public class BotPlayer extends Player{
 
     public void setPlayingStretegy(BotPlayingStretegy playingStretegy) {
         this.playingStretegy = playingStretegy;
+    }
+
+    @Override
+    public Move acceptMove() {
+        System.out.println("Enter row no: ");
+        int row=sc.nextInt();
+        System.out.println("Enter col no: ");
+        int col=sc.nextInt();
+
+        return new Move(new Cell(row,col),this);
     }
 }

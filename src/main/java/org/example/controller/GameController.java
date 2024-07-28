@@ -3,13 +3,14 @@ package org.example.controller;
 import org.example.models.Game;
 import org.example.models.GameState;
 import org.example.models.Player;
+import org.example.strategies.WinningStrategy;
 
 import java.util.List;
 
 public class GameController {
 
-    public Game startGame(int size, List<Player> players){
-        return Game.getBuilder().setSize(3).setPlayers(players).build();
+    public Game startGame(int size, List<Player> players, List<WinningStrategy> winningStrategies){
+        return Game.getBuilder().setSize(3).setPlayers(players).setWinningStrategies(winningStrategies).build();
     }
     public void displayBoard(Game game) {
         game.displayBoard();
@@ -17,7 +18,10 @@ public class GameController {
     public GameState getGameState(Game game){
         return game.getGameState();
     }
-//    public void makeMove(Move move) {
-//
-//    }
+    public void makeMove(Game game) {
+        game.makeMove();
+    }
+    public void undoMove(Game game){
+        game.undeMove();
+    }
 }
