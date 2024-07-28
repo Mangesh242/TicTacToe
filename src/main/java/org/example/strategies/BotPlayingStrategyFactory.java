@@ -9,6 +9,5 @@ public class BotPlayingStrategyFactory {
             return new BotEasyPlayingStrategy();
         }
         return null;
-
     }
 }

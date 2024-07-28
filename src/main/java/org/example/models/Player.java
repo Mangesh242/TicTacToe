@@ -51,7 +51,8 @@ public abstract class Player {
     public void setSymbol(Symbol symbol) {
         this.symbol = symbol;
     }
-    public abstract Move acceptMove();
+
+    public abstract Move acceptMove(Board board);
 
 
 }

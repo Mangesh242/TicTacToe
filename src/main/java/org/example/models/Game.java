@@ -103,7 +103,7 @@ public class Game {
 
         System.out.println("It's a "+currentPlayer.getName()+"'s turn ");
 //        Step 2: Get the moves
-        Move move=currentPlayer.acceptMove();
+        Move move=currentPlayer.acceptMove(board);
 
         System.out.println("Move symbol: "+move.getCell().getSymbol());
 

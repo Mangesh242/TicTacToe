@@ -9,7 +9,7 @@ public class HumanPlayer extends Player {
     }
 
     @Override
-    public Move acceptMove() {
+    public Move acceptMove(Board board) {
         System.out.println("Enter row no: ");
         int row=sc.nextInt();
         System.out.println("Enter col no: ");
