@@ -1,11 +1,14 @@
 package org.example.models;
 
-public class Player {
+import java.util.Scanner;
+
+public abstract class Player {
     private int id;
     private String name;
     private int rank;
     private Symbol symbol;
     private PlayerType playerType;
+    Scanner sc=new Scanner(System.in);
 
     public PlayerType getPlayerType() {
         return playerType;
@@ -51,4 +54,7 @@ public class Player {
     public void setSymbol(Symbol symbol) {
         this.symbol = symbol;
     }
+
+    public abstract Move acceptMove();
+
 }

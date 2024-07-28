@@ -28,4 +28,15 @@ public class BotPlayer extends Player{
     public void setPlayingStretegy(BotPlayingStretegy playingStretegy) {
         this.playingStretegy = playingStretegy;
     }
+
+    @Override
+    public Move acceptMove()
+    {
+        System.out.println("Please enter the row where you want to place the symbol : ");
+        int r=sc.nextInt();
+        int c=sc.nextInt();
+
+        return new Move(new Cell(r,c),this);
+
+    }
 }

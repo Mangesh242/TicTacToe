@@ -13,13 +13,13 @@ public class Game {
     private List<WinningStrategy> winningStrategies;
 
     private GameState gameState;
-    private Player winnerName;
+    private Player winnerPlayer;
     public int nextPlayerIndex;
 
     private Game(Builder builder){
         board=new Board(builder.size);
         players=builder.players;
-        winnerName=null;
+        winnerPlayer =null;
         nextPlayerIndex=0;
         moves=new ArrayList<>();
         gameState=GameState.IN_PROGRESS;
@@ -76,12 +76,12 @@ public class Game {
         this.gameState = gameState;
     }
 
-    public Player getWinnerName() {
-        return winnerName;
+    public Player getWinnerPlayer() {
+        return winnerPlayer;
     }
 
-    public void setWinnerName(Player winnerName) {
-        this.winnerName = winnerName;
+    public void setWinnerPlayer(Player player) {
+        this.winnerPlayer = player;
     }
 
     public int getNextPlayerIndex() {
@@ -96,27 +96,86 @@ public class Game {
         return new Builder();
     }
 
+    public void makeMove(){
+        //Get the current player
+        //Accept Move from player
+        //Validate the move
+        //Update the grid
+        //add this move to moves list for undo operation
+        //update index
+        //Check Winner : If yes set the winner name and change game state.
+
+        //Get the current player
+        Player player=players.get(nextPlayerIndex);
+        //Accept the move from player
+        Move move=player.acceptMove();
+
+        //Validate the move
+        if(!validateMove(move)){
+            System.out.println("Invalid move pls try again");
+        }
+        int row=move.getCell().getRow();
+        int col=move.getCell().getCol();
+
+        Cell cellToChange=board.getGrid().get(row).get(col);
+        cellToChange.setCellState(CellState.FILLED);
+        cellToChange.setSymbol(player.getSymbol());
+
+        move.setCell(cellToChange);
+        move.setPlayer(player);
+        moves.add(move);
+
+        nextPlayerIndex++;
+        nextPlayerIndex%=players.size();
+
+        //Check winner or Check GameState
+        if(checkWinner(move)){
+            setWinnerPlayer(player);
+            setGameState(GameState.SUCCESS);
+        }else if(moves.size()== board.getSize()* board.getSize()){
+            setWinnerPlayer(null);
+            setGameState(GameState.DRAW);
+        }
+    }
+    public boolean checkWinner(Move move){
+        for(WinningStrategy winningStrategy : winningStrategies){
+            if(winningStrategy.checkWinner(board,move)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean validateMove(Move move){
+        int row=move.getCell().getRow();
+        int col=move.getCell().getCol();
+
+        if(row < 0 && row > board.getSize()-1
+                &&
+        col<0 && col > board.getSize()-1) return false;
+
+        //if cellstate is empty then only send True otherwise false
+        return board.getGrid().get(row).get(col).getCellState().equals(CellState.EMPTY);
+    }
+
     public static class Builder{
         //Can you think which attribute will we take from user
         //1.board size
         private int size;
         private List<Player> players;
-
-        public int getSize() {
-            return size;
-        }
+        List<WinningStrategy> winningStrategies;
 
         public Builder setSize(int size) {
             this.size = size;
             return this;
         }
 
-        public List<Player> getPlayers() {
-            return players;
-        }
-
         public Builder setPlayers(List<Player> players) {
             this.players = players;
+            return this;
+        }
+        public Builder setWinningStrategies(List<WinningStrategy> winningStrategies) {
+            this.winningStrategies = winningStrategies;
             return this;
         }
 
